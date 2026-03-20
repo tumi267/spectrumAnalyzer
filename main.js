@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", function () {
 const btn1=document.getElementById('btn1')
 const btn2=document.getElementById('btn2')
 const contain = document.getElementById('container')
@@ -42,7 +43,7 @@ const playaudio= async()=>{
             audio.pause(); 
             audio.src = newSrc;
             audio.load(); 
-            isplaying = false;
+            isplaying = false;  
         }
         if (!isplaying) {
             audio.play();
@@ -69,7 +70,7 @@ const playaudio= async()=>{
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 analizer.getByteFrequencyData(dataArry)
                 for (let index = 0; index < bufferLength; index++) {
-                    const barheight = dataArry[index];
+                    const barheight = dataArry[index]*2;
                     ctx.shadowColor = 'black'; // Shadow color
                     ctx.shadowBlur = 10;        // Blur amount
                     ctx.shadowOffsetX = 0;
@@ -77,7 +78,7 @@ const playaudio= async()=>{
             
                     // 3. Draw the main pink bar
                     ctx.fillStyle = sources[selected].color;
-                    ctx.fillRect(x, canvas.height - barheight, barwidth - 2, barheight);
+                    ctx.fillRect(x, canvas.height - barheight, barwidth - 1, barheight);
             
                     // 4. Add Border (Stroke)
                     ctx.strokeStyle = 'black';  // Border color
@@ -115,3 +116,4 @@ const playaudio= async()=>{
     })
 }
 playaudio()
+})
