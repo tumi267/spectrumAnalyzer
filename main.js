@@ -5,7 +5,10 @@ const contain = document.getElementById('container')
 let audioCtx
 const audio = new Audio()
 audio.crossOrigin = "anonymous"
-const sources=[{src:"audiosrc1.mp3",color:'pink'},{src:"audiosrc2.mp3",color:'green'},{src:"audiosrc3.mp3",color:'blue'},{src:"audiosrc4.mp3",color:'white'}]
+const sources=    const sources=[{src:"https://cdn.prod.website-files.com/696f71293b9af01fb672ff8b/69bcfc1c7553ddf0377535ae_ALIESM1-1%20.mp3",color:'pink'},
+{src:"https://cdn.prod.website-files.com/696f71293b9af01fb672ff8b/69bcfc1c7553ddf0377535ae_ALIESM1-1%20.mp3",color:'green'},
+{src:"https://cdn.prod.website-files.com/696f71293b9af01fb672ff8b/69bcfc1c7553ddf0377535ae_ALIESM1-1%20.mp3",color:'blue'},
+{src:"https://cdn.prod.website-files.com/696f71293b9af01fb672ff8b/69bcfc1c7553ddf0377535ae_ALIESM1-1%20.mp3",color:'white'}]
 let selected=0
 // audio.src = sources[0].src
 
