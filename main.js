@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 const btn1=document.getElementById('btn1')
 const btn2=document.getElementById('btn2')
+const btn3=document.getElementById('btn3')
 const contain = document.getElementById('container')
 let audioCtx
 const audio = new Audio()
@@ -49,9 +50,9 @@ const runaudio=(newSrc)=>{
         audioCtx.resume()
     }
 
-        if (newSrc && audio.src !== new URL(newSrc, window.location.href).href) {
+        if (newSrc && audio.src !== newSrc) {
             audio.pause(); 
-            audio.src = newSrc;
+            audio.src = newSrc + "?v=" + Date.now();
             audio.load(); 
             isplaying = false;  
         }
@@ -123,6 +124,11 @@ const runaudio=(newSrc)=>{
     contain.addEventListener('click',()=>{
        
         runaudio(sources[selected].src)
+    })
+    btn3.addEventListener('click',(e)=>{
+        e.stopPropagation()
+        audio.pause()
+        isplaying=false
     })
 }
 playaudio()
