@@ -30,8 +30,8 @@ async function audioUrlToBase64(url) {
   }
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
-canvas.style.width = '100vw';
-canvas.style.height = '95vh';
+canvas.style.width = '100%';
+canvas.style.height = '100%';
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight * 0.95;
 ctx.fillStyle = 'black';
@@ -113,18 +113,16 @@ const runaudio=(newSrc)=>{
     }
     btn1.addEventListener('click',(e)=>{
         e.stopPropagation()
-        selected = (selected + 1) % sources.length; 
+        selected = (selected) % sources.length; 
         runaudio(sources[selected].src)
+        isplaying=true
     })
     btn2.addEventListener('click',(e)=>{
         e.stopPropagation()
-        selected = (selected - 1 + sources.length) % sources.length;
+        selected = (selected + 1) % sources.length; 
         runaudio(sources[selected].src)
     })
-    contain.addEventListener('click',()=>{
-       
-        runaudio(sources[selected].src)
-    })
+
     btn3.addEventListener('click',(e)=>{
         e.stopPropagation()
         audio.pause()
