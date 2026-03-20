@@ -81,22 +81,25 @@ const runaudio=(newSrc)=>{
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 analizer.getByteFrequencyData(dataArry)
                 for (let index = 0; index < bufferLength; index++) {
-                    const barheight = dataArry[index]*2;
-                    ctx.shadowColor = 'black'; // Shadow color
-                    ctx.shadowBlur = 10;        // Blur amount
-                    ctx.shadowOffsetX = 0;
-                    ctx.shadowOffsetY = 0;
-            
-                    // 3. Draw the main pink bar
+                    const barheight = dataArry[index] * 2;
+                    const overlayHeight = dataArry[index] * 1.2;
+
+                    ctx.shadowColor = 'black';
+                    ctx.shadowBlur = 10;
+
+                    // 1. Draw the main bar (Pink/Source Color)
                     ctx.fillStyle = sources[selected].color;
                     ctx.fillRect(x, canvas.height - barheight, barwidth - 1, barheight);
-            
-                    // 4. Add Border (Stroke)
-                    ctx.strokeStyle = 'black';  // Border color
-                    ctx.lineWidth = 2;          // Border thickness        // Border thickness
-                    
-                    ctx.fillRect(x,canvas.height-barheight,barwidth,barheight)
-                    x+=barwidth
+
+                    // 2. Draw the overlay bar (Blue)
+                    ctx.fillStyle = 'black';
+                    ctx.fillRect(x, canvas.height - overlayHeight, barwidth - 1, overlayHeight);
+
+                    // 3. Add Border (Stroke) - Use strokeRect instead of fillRect
+                    ctx.strokeStyle = 'black';
+                    ctx.lineWidth = 2;
+                    ctx.strokeRect(x, canvas.height - barheight, barwidth - 1, barheight);
+                    x += barwidth;
                 }
                 requestAnimationFrame(runBarAimtie)
 
