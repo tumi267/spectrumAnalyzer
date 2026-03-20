@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
 const btn1=document.getElementById('btn1')
 const btn2=document.getElementById('btn2')
 const contain = document.getElementById('container')
-const audioCtx=new AudioContext()
+let audioCtx
 const audio = new Audio()
 audio.crossOrigin = "anonymous"
 const sources=[{src:"audiosrc1.mp3",color:'pink'},{src:"audiosrc2.mp3",color:'green'},{src:"audiosrc3.mp3",color:'blue'},{src:"audiosrc4.mp3",color:'white'}]
@@ -36,8 +36,15 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);
 const playaudio= async()=>{
 //  let baseurl=await audioUrlToBase64('audiosrc1.mp3')
 //     let audio=new Audio(baseurl)
-    const runaudio=(newSrc)=>{
-        if (audioCtx.state === 'suspended') audioCtx.resume();
+const runaudio=(newSrc)=>{
+
+    if (!audioCtx) {
+        audioCtx = new AudioContext()
+    }
+
+    if (audioCtx.state === 'suspended') {
+        audioCtx.resume()
+    }
 
         if (newSrc && audio.src !== new URL(newSrc, window.location.href).href) {
             audio.pause(); 
